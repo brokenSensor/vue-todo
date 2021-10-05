@@ -1,0 +1,15 @@
+{
+	"name": "vue-chat",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "concurrently \"nodemon index.js\" \"npm run dev --prefix frontend\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}

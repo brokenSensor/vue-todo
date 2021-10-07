@@ -1,38 +1,40 @@
 <template>
-  <div class="container">
-    <div class="container">
-      <div class="box">
-        <h1 class="header">Todos List</h1>
-        <input
-          @keyup.enter="createTodoList"
-          v-model="todoName"
-          type="text"
-          placeholder="Create or Rename Todo List"
-        />
-        <ul class="todos-list">
-          <li
-            class="list-item"
-            v-for="(todo, index) in todos"
-            v-bind:key="index"
-          >
-            <router-link :to="`/todo/${index}`">{{ todo.name }}</router-link>
-            <div class="btn-container">
-              <button
-                class="btn-edit"
+  <v-layout column justify-center align-center>
+    <v-flex align-self-center>
+      <v-card width="600" max-width="100%">
+        <v-card-title>Todos List</v-card-title>
+
+        <v-card-text>
+          <v-text-field
+            @keyup.enter="createTodoList"
+            v-model="todoName"
+            placeholder="Create or Rename Todo List"
+          />
+
+          <v-list two-line>
+            <v-list-item v-for="(todo, index) in todos" v-bind:key="index">
+              <v-list-item-title>
+                <v-btn block :to="`/todo/${index}`"
+                  >{{ index + 1 }}. {{ todo.name }}</v-btn
+                >
+              </v-list-item-title>
+
+              <v-btn
                 :disabled="todoName.length < 1"
                 @click="renameTodoList({ todoIndex: index, name: todoName })"
               >
                 Rename
-              </button>
-              <button class="btn-delete" @click="removeTodoList(index)">
+              </v-btn>
+
+              <v-btn dark class="btn-delete" @click="removeTodoList(index)">
                 Delete
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+              </v-btn>
+            </v-list-item>
+          </v-list>
+        </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

@@ -12,25 +12,27 @@
           />
 
           <v-list two-line>
-            <v-list-item v-for="(todo, index) in todos" v-bind:key="index">
-              <v-list-item-title>
-                <v-btn block :to="`/todo/${index}`"
-                  >{{ index + 1 }}. {{ todo.name }} | Total:
-                  {{ todo.array.length }}</v-btn
+            <v-slide-x-transition group>
+              <v-list-item v-for="(todo, index) in todos" v-bind:key="index">
+                <v-list-item-title>
+                  <v-btn block :to="`/todo/${index}`"
+                    >{{ index + 1 }}. {{ todo.name }} | Total:
+                    {{ todo.array.length }}</v-btn
+                  >
+                </v-list-item-title>
+
+                <v-btn
+                  :disabled="todoName.length < 1"
+                  @click="renameTodoList({ todoIndex: index, name: todoName })"
                 >
-              </v-list-item-title>
+                  Rename
+                </v-btn>
 
-              <v-btn
-                :disabled="todoName.length < 1"
-                @click="renameTodoList({ todoIndex: index, name: todoName })"
-              >
-                Rename
-              </v-btn>
-
-              <v-btn dark class="btn-delete" @click="removeTodoList(index)">
-                Delete
-              </v-btn>
-            </v-list-item>
+                <v-btn dark class="btn-delete" @click="removeTodoList(index)">
+                  Delete
+                </v-btn>
+              </v-list-item>
+            </v-slide-x-transition>
           </v-list>
         </v-card-text>
       </v-card>

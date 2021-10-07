@@ -10,32 +10,35 @@
           placeholder="Create Todo Item"
         />
         <v-list two-line>
-          <v-list-item v-for="(item, index) in todo.array" v-bind:key="index">
-            <v-list-item-title>
+          <v-slide-x-transition group>
+            <v-list-item v-for="(item, index) in todo.array" v-bind:key="index">
+              <v-list-item-title>
+                <v-btn
+                  v-bind:class="{ 'text-decoration-line-through': item.done }"
+                  block
+                  @click="
+                    checkTodoItem({
+                      todoIndex: id,
+                      itemIndex: index
+                    })
+                  "
+                  >{{ index + 1 }}. {{ item.name }}</v-btn
+                >
+              </v-list-item-title>
+
               <v-btn
-                v-bind:class="{ 'text-decoration-line-through': item.done }"
-                block
+                dark
                 @click="
-                  checkTodoItem({
+                  removeTodoItem({
                     todoIndex: id,
                     itemIndex: index
                   })
                 "
-                >{{ index + 1 }}. {{ item.name }}</v-btn
               >
-            </v-list-item-title>
-
-            <v-btn
-              @click="
-                removeTodoItem({
-                  todoIndex: id,
-                  itemIndex: index
-                })
-              "
-            >
-              Delete
-            </v-btn>
-          </v-list-item>
+                Delete
+              </v-btn>
+            </v-list-item>
+          </v-slide-x-transition>
         </v-list>
       </v-card>
     </v-flex>

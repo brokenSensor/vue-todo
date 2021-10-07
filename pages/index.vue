@@ -15,7 +15,8 @@
             <v-list-item v-for="(todo, index) in todos" v-bind:key="index">
               <v-list-item-title>
                 <v-btn block :to="`/todo/${index}`"
-                  >{{ index + 1 }}. {{ todo.name }}</v-btn
+                  >{{ index + 1 }}. {{ todo.name }} | Total:
+                  {{ todo.array.length }}</v-btn
                 >
               </v-list-item-title>
 

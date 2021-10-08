@@ -1,10 +1,10 @@
 <template>
   <v-app app dark>
-    <v-container>
-      <v-container fluid>
+    <v-layout row align-center class="ma-0">
+      <v-layout id="wraper" column justify-center align-center>
         <Nuxt />
-      </v-container>
-    </v-container>
+      </v-layout>
+    </v-layout>
   </v-app>
 </template>
 

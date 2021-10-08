@@ -9,10 +9,6 @@ export const mutations = {
     state.array.push({ name: payload, array: [] });
     localStorage.setItem("todos", JSON.stringify(state.array));
   },
-  renameTodoList(state, payload) {
-    state.array[payload.todoIndex].name = payload.name;
-    localStorage.setItem("todos", JSON.stringify(state.array));
-  },
   removeTodoList(state, payload) {
     state.array.splice(payload, 1);
     localStorage.setItem("todos", JSON.stringify(state.array));

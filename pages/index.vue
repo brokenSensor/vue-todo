@@ -1,43 +1,29 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex align-self-center>
-      <v-card width="600" max-width="100%">
-        <v-card-title>Todos List</v-card-title>
+  <v-card width="600" max-width="90%">
+    <v-card-title>Todos List</v-card-title>
 
-        <v-card-text>
-          <v-text-field
-            @keyup.enter="createTodoList"
-            v-model="todoName"
-            placeholder="Create or Rename Todo List"
-          />
+    <v-text-field
+      @keyup.enter="createTodoList"
+      v-model="todoName"
+      placeholder="Create or Rename Todo List"
+    />
 
-          <v-list two-line>
-            <v-slide-x-transition group>
-              <v-list-item v-for="(todo, index) in todos" v-bind:key="index">
-                <v-list-item-title>
-                  <v-btn block :to="`/todo/${index}`"
-                    >{{ index + 1 }}. {{ todo.name }} | Total:
-                    {{ todo.array.length }}</v-btn
-                  >
-                </v-list-item-title>
-
-                <v-btn
-                  :disabled="todoName.length < 1"
-                  @click="renameTodoList({ todoIndex: index, name: todoName })"
-                >
-                  Rename
-                </v-btn>
-
-                <v-btn dark class="btn-delete" @click="removeTodoList(index)">
-                  Delete
-                </v-btn>
-              </v-list-item>
-            </v-slide-x-transition>
-          </v-list>
-        </v-card-text>
-      </v-card>
-    </v-flex>
-  </v-layout>
+    <v-list two-line>
+      <v-slide-x-transition group>
+        <v-list-item v-for="(todo, index) in todos" v-bind:key="index">
+          <v-list-item-title>
+            <v-btn block :to="`/todo/${index}`"
+              >{{ index + 1 }}. {{ todo.name }} | Total:
+              {{ todo.array.length }}</v-btn
+            >
+          </v-list-item-title>
+          <v-btn dark class="btn-delete" @click="removeTodoList(index)">
+            Delete
+          </v-btn>
+        </v-list-item>
+      </v-slide-x-transition>
+    </v-list>
+  </v-card>
 </template>
 
 <script>
@@ -59,20 +45,9 @@ export default {
         this.todoName = "";
       }
     },
-    renameTodoList({ todoIndex, name }) {
-      if (this.todoName.length > 0) {
-        this.$store.commit("todos/renameTodoList", { todoIndex, name });
-        this.todoName = "";
-      }
-    },
     removeTodoList(index) {
       this.$store.commit("todos/removeTodoList", index);
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.todos-page {
-}
-</style>
